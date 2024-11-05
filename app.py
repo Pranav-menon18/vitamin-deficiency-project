@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 
-st.header("Vitamin Deficiency Detection")
+st.header("Vitamin Deficiency Detection1")
 sb = st.sidebar
 sb.subheader('Upload your Image')
 img = sb.file_uploader('Upload Skin, Nail, Toungue, or Eye Image',type=['png','jpg','jpeg'])
