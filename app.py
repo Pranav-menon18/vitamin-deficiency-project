@@ -29,50 +29,54 @@ def set_background(img_file):
         background-position: center;
     }}
     
-    /* Add this to ensure text is visible */
+    /* Ensuring text is visible */
     .main .block-container {{
         padding: 1em;
         margin: 0 auto;
         max-width: 1200px;
         text-align: center;
-        color: white; /* Change text color if needed */
+        color: white;
     }}
     
     /* Optional: Make sidebar transparent */
     .sidebar .sidebar-content {{
         background-color: transparent;
     }}
-    
-    /* Optional: Adjust header styles */
-    .main .block-container h1 {{
-        font-size: 2em; /* Adjust font size */
+
+    /* Heading font and size adjustments */
+    .custom-header h1 {{
+        font-size: 3em; /* Increase main heading size */
+        font-family: 'Arial Black', sans-serif; /* Use a different font */
+        font-weight: bold;
+        color: #f1f1f1;
     }}
     
-    .main .block-container h2 {{
-        font-size: 1.5em; /* Adjust font size */
+    .custom-header h2 {{
+        font-size: 2em; /* Increase subheading size */
+        font-family: 'Georgia', serif; /* Use a different font */
+        color: #f1f1f1;
     }}
-    
     </style>
     """
     
     st.markdown(css, unsafe_allow_html=True)
 
 # Load the background image
-set_background("backgroundimage.jpg")
+set_background("backgroundimage2.jpg")
 
-# Create a custom header
-st.markdown("<h1 style='text-align: center; color: white;'>VitaVision</h1>", unsafe_allow_html=True)
-st.markdown("<h2 style='text-align: center; color: white;'>Automated Detection of Vitamin Deficiencies through Image Analysis</h2>", unsafe_allow_html=True)
+# Custom header with increased font size and different font styles
+st.markdown("<div class='custom-header'><h1>VitaVision</h1></div>", unsafe_allow_html=True)
+st.markdown("<div class='custom-header'><h2>Automated Detection of Vitamin Deficiencies through Image Analysis</h2></div>", unsafe_allow_html=True)
 
 # Sidebar configuration
 sb = st.sidebar
 sb.subheader('Upload your Image')
 img = sb.file_uploader('Upload Skin, Nail, Tongue, or Eye Image', type=['png','jpg','jpeg'])
-sb.write('Powered by AI and Streamlit')
+
 
 if img:
-    st.image(img,'Uploaded Image')
+    st.image(img, caption='Uploaded Image')
     btn = st.button("Find Deficiency")
     if btn:
         gray_image = Image.open(img).convert("L")
-        st.image(gray_image,'Processed Image')
+        st.image(gray_image, caption='Processed Image')
